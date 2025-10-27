@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Absensi Guru</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      padding: 24px;
+      border-radius: 10px;
+      margin-top: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 { text-align: center; }
+    label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    #statusMsg {
+      margin-top: 12px;
+      text-align: center;
+      font-weight: 600;
+    }
+    #mapContainer {
+      margin-top: 16px;
+      text-align: center;
+      display: none;
+    }
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 250px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Absensi Guru</h1>
+    <form id="absenForm">
+      <label>Nama Lengkap
+        <select id="nama" required>
+          <option value="NICO PRAMANA, S.Pd,Gr">NICO PRAMANA, S.Pd,Gr</option>
+          <option value="MUHAMMAD INDRA GUNAWAN, SM, MM">MUHAMMAD INDRA GUNAWAN, SM, MM</option>
+          <option value="AHMAD JUFRI, S.Pd">AHMAD JUFRI, S.Pd</option>
+          <option value="MAULANA ARBI, S.Pd">MAULANA ARBI, S.Pd</option>
+          <option value="NOVIA DESI PANDINING AYU, SE">NOVIA DESI PANDINING AYU, SE</option>
+          <option value="DENNY STYAWAN, S.Kom">DENNY STYAWAN, S.Kom</option>
+          <option value="M.YUSUF, S.Kom">M.YUSUF, S.Kom</option>
+          <option value="YULISKA DIASTUTI, S.Pd">YULISKA DIASTUTI, S.Pd</option>
+          <option value="PUDJI LESTARI, S.SI">PUDJI LESTARI, S.SI</option>
+          <option value="PRISWATI, S.Pd">PRISWATI, S.Pd</option>
+          <option value="IVO HANDRI PRIJUPRI, S.Pd">IVO HANDRI PRIJUPRI, S.Pd</option>
+          <option value="ERIKA AGUSTINA PRATIWI, SE">ERIKA AGUSTINA PRATIWI, SE</option>
+          <option value="RISKA YANTI, S.Pd">RISKA YANTI, S.Pd</option>
+          <option value="DESI ASMAYANI, S.Pd">DESI ASMAYANI, S.Pd</option>
+          <option value="DESY IRMAYANTI, S.Pd">DESY IRMAYANTI, S.Pd</option>
+          <option value="RAMADHAN, SE">RAMADHAN, SE</option>
+          <option value="RARA MUSTIKA, S.">RARA MUSTIKA, S.</option>
+          <option value="PUTRI SUWARDA NINGSIH, S.Kom">PUTRI SUWARDA NINGSIH, S.Kom</option>
+          <option value="CHINTIYA DESTI YANTI,S.Kom">CHINTIYA DESTI YANTI,S.Kom</option>
+          <option value="RISMAWATI SITUMORANG, S.Pd.K">RISMAWATI SITUMORANG, S.Pd.K</option>
+          <option value="YOLLA APRILIA, S.Pd">YOLLA APRILIA, S.Pd</option>
+          <option value="SUNITA MAHARANI Br. SEMBIRING, S.Pd">SUNITA MAHARANI Br. SEMBIRING, S.Pd</option>
+          <option value="AYU SYAHFITRI,S.Kom">AYU SYAHFITRI,S.Kom</option>
+          <option value="KHAIRI SYALWANA">KHAIRI SYALWANA</option>
+          <option value="PUTRI ANGGI">PUTRI ANGGI</option>
+          <option value="LUKMAN NURHAKIM">LUKMAN NURHAKIM</option>
+          <option value="ZELA SHINTYA, SE">ZELA SHINTYA, SE</option>
+          <option value="TANTRI PUSPITA">TANTRI PUSPITA</option>
+          <option value="SUPRIADI, S.Ag">SUPRIADI, S.Ag</option>
+          <option value="LENI PRANSISKA,S.Pd">LENI PRANSISKA,S.Pd</option>
+          <option value="NESSY, S.Pd">NESSY, S.Pd</option>
+          <option value="FRANSISCA AMAZONA, S.Pd">FRANSISCA AMAZONA, S.Pd</option>
+          <option value="YETY ERAWATY, S.Pd">YETY ERAWATY, S.Pd</option>
+          <option value="ERNI JULISAH ASIH, S.Pd">ERNI JULISAH ASIH, S.Pd</option>
+          <option value="NURI JUNITA, S.Kom">NURI JUNITA, S.Kom</option>
+          <option value="ADAM ZUHRI PRIKA, S.Pd">ADAM ZUHRI PRIKA, S.Pd</option>
+          <option value="RIEN NOVITA SARI, S.Pd">RIEN NOVITA SARI, S.Pd</option>
+          <option value="ANWAR EFENDI, S.Pd">ANWAR EFENDI, S.Pd</option>
+          <option value="Drs. BOWO ARO ZAI">Drs. BOWO ARO ZAI</option>
+          <option value="MUTIA WARSYAH PASARIBU, S.Pd">MUTIA WARSYAH PASARIBU, S.Pd</option>
+          <option value="FRANS WIJAYA">FRANS WIJAYA</option>
+          <option value="ANNISA, SH">ANNISA, SH</option>
+        </select>
+      </label>
+
+      <label>NIK
+        <input type="text" id="nik" required />
+      </label>
+
+      <label>Status Absen
+        <select id="status">
+          <option value="Masuk">Masuk</option>
+          <option value="Pulang">Pulang</option>
+        </select>
+      </label>
+
+      <div id="statusMsg"></div>
+
+      <div id="mapContainer">
+        <h4>📍 Lokasi Anda</h4>
+        <iframe id="mapFrame" loading="lazy"></iframe>
+      </div>
+
+      <button id="btnSubmit" type="submit" disabled>Kirim Absensi</button>
+    </form>
+  </main>
+
+  <script>
+    // === KONFIGURASI ===
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwB9Z03qd0E57z1G-P7s0EqdWfgt6WX0oPj1p80TXzntH5xzq94ZpnPKGpfyU1lWJXW/exec";
+    const CLIENT_TOKEN = "TOKEN123";
+    const SCHOOL_LAT = 3.579791017177083; // Ganti dengan koordinat sekolah
+    const SCHOOL_LNG = 98.67245708465211;
+    const ALLOWED_RADIUS = 20; // Meter
+    // ====================
+
+    const form = document.getElementById("absenForm");
+    const statusMsg = document.getElementById("statusMsg");
+    const btnSubmit = document.getElementById("btnSubmit");
+    const mapContainer = document.getElementById("mapContainer");
+    const mapFrame = document.getElementById("mapFrame");
+
+    window.addEventListener("load", cekGPS);
+
+    async function cekGPS() {
+      statusMsg.textContent = "🔍 Memeriksa izin lokasi...";
+      statusMsg.style.color = "black";
+      btnSubmit.disabled = true;
+
+      try {
+        const pos = await getPosition();
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        tampilkanMap(lat, lng);
+        statusMsg.textContent = "✅ Lokasi aktif. Anda dapat melakukan absensi.";
+        statusMsg.style.color = "green";
+        btnSubmit.disabled = false;
+      } catch {
+        statusMsg.textContent = "❌ Lokasi belum diaktifkan. Aktifkan GPS dan izinkan lokasi.";
+        statusMsg.style.color = "red";
+        btnSubmit.disabled = true;
+        setTimeout(cekGPS, 5000);
+      }
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusMsg.textContent = "Memproses...";
+      statusMsg.style.color = "black";
+      btnSubmit.disabled = true;
+
+      const nama = document.getElementById("nama").value.trim();
+      const nik = document.getElementById("nik").value.trim();
+      const statusAbsen = document.getElementById("status").value;
+      const jam = new Date().toLocaleTimeString("id-ID", { hour12: false });
+      const tanggal = new Date().toLocaleDateString("id-ID");
+
+      try {
+        const pos = await getPosition();
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        const jarak = distance(lat, lng, SCHOOL_LAT, SCHOOL_LNG);
+
+        if (jarak > ALLOWED_RADIUS) {
+          statusMsg.textContent = `⚠ Anda berada ${Math.round(jarak)} m dari sekolah (maks ${ALLOWED_RADIUS} m).`;
+          statusMsg.style.color = "red";
+          btnSubmit.disabled = false;
+          return;
+        }
+
+        const lokasi = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+        tampilkanMap(lat, lng);
+
+        const payload = { token: CLIENT_TOKEN, nama, nik, tanggal, jam, lokasi, status: statusAbsen };
+
+        // POST tanpa CORS error
+        await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        statusMsg.textContent = "✅ Absensi berhasil dikirim ke server!";
+        statusMsg.style.color = "green";
+        form.reset();
+
+      } catch (err) {
+        statusMsg.textContent = "❌ " + err.message;
+        statusMsg.style.color = "red";
+      } finally {
+        btnSubmit.disabled = false;
+      }
+    });
+
+    function getPosition() {
+      return new Promise((resolve, reject) => {
+        if (!navigator.geolocation) reject(new Error("Geolocation tidak didukung."));
+        navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true, timeout: 10000 });
+      });
+    }
+
+    function tampilkanMap(lat, lng) {
+      mapContainer.style.display = "block";
+      mapFrame.src = `https://www.google.com/maps?q=${lat},${lng}&hl=id&z=17&output=embed`;
+    }
+
+    function distance(lat1, lon1, lat2, lon2) {
+      const R = 6371000;
+      const toRad = x => x * Math.PI / 180;
+      const dLat = toRad(lat2 - lat1);
+      const dLon = toRad(lon2 - lon1);
+      const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
+    }
+  </script>
+</body>
+</html>
